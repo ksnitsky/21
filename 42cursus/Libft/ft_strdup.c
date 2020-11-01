@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:04:48 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/10/31 11:04:49 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:23:42 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s1)
 	void	*s2;
 
 	len = ft_strlen(s1) + 1;
-	if ((s2 = malloc(len)) == NULL)
+	if (!(s2 = malloc(len)))
 		return (NULL);
 	return ((char*)ft_memcpy(s2, s1, len));
 }

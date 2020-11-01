@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:04:19 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/10/31 11:04:20 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:47:50 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_putnbr_fd(int n, int fd)
 
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		write(fd, "-", 1);
 		nb = (unsigned int)(n * -1);
 	}
 	else

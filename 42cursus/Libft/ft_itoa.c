@@ -5,47 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 11:03:37 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/10/31 11:03:38 by tkathrin         ###   ########.fr       */
+/*   Created: 2020/11/01 11:33:53 by tkathrin          #+#    #+#             */
+/*   Updated: 2020/11/01 12:38:43 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	ft_isnegative(int *n, int *m)
+char	*ft_itoa(int n)
 {
-	if (*n < 0)
-	{
-		*n *= -1;
-		*m = 1;
-	}
-}
-
-char			*ft_itoa(int n)
-{
+	char	*arr;
+	int		count;
+	int		sign;
 	int		temp;
-	int		z;
-	int		m;
-	char	*str;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	temp = n;
-	z = 2;
-	m = 0;
-	ft_isnegative(&n, &m);
+	sign = (n < 0 ? -1 : 1);
+	temp = (sign < 0 ? -n : n);
+	count = (sign < 0 ? 2 : 1);
 	while (temp /= 10)
-		z++;
-	z = (m == 1 ? z + 1 : z);
-	if (!(str = (char*)malloc(sizeof(char) * z)))
+		count++;
+	if (!(arr = malloc(count * sizeof(char) + 1)))
 		return (NULL);
-	str[--z] = '\0';
-	while (z--)
+	arr[count--] = '\0';
+	n = (sign < 0 ? -n : n);
+	while (count)
 	{
-		str[z] = n % 10 + '0';
+		arr[count--] = n % 10 + 48;
 		n /= 10;
 	}
-	if (m == 1)
-		str[0] = '-';
-	return (str);
+	arr[count] = (sign < 0 ? '-' : n + 48);
+	return (arr);
 }

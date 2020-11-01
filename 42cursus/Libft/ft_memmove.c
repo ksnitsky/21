@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:04:00 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/10/31 11:04:01 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:45:12 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*s;
 	unsigned char	*d;
+	unsigned char	*s;
 	size_t			i;
 
 	if (src == dst)

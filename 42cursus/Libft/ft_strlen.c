@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:42:15 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/10/30 12:40:33 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:54:23 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t		ft_strlen(const char *s)
 {
-	size_t i;
+	size_t count;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	count = 0;
+	while (s[count] != '\0')
+		count++;
+	return (count);
 }

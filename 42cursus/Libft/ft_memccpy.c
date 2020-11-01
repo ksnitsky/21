@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 23:54:00 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/10/30 11:36:25 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:40:51 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	unsigned char	*s;
 	unsigned char	*d;
+	unsigned char	*s;
 	size_t			i;
 
 	i = 0;
