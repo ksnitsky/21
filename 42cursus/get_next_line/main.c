@@ -1,13 +1,11 @@
 #include "get_next_line.h"
-#include <stdio.h>
 #include <fcntl.h>
-#include <string.h>
 
 int			main(int argc, char **argv)
 {
 	int		i;
 	int		fd;
-	char	*line;
+	char		*line;
 
 	if (argc == 2)
 	{
@@ -20,6 +18,7 @@ int			main(int argc, char **argv)
 			free(line);
 		}
 		close(fd);
+		free(line);
 	}
 	return (0);
 }
