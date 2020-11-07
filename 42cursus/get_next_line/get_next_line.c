@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:50:32 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/11/07 12:57:18 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/07 17:03:16 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int		has_return(char *str)
 {
 	int			i;
 
-	i = 0;
 	if (!str)
 		return (0);
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -34,10 +34,10 @@ static char		*go_next(char *file)
 	int			i;
 	int			j;
 
-	i = 0;
-	j = 0;
 	if (!file)
 		return (0);
+	i = 0;
+	j = 0;
 	while (file[i] && file[i] != '\n')
 		i++;
 	if (!file[i])
@@ -60,9 +60,9 @@ static char		*get_line(char *str)
 	char		*line;
 	int			i;
 
-	i = 0;
 	if (!str)
 		return (0);
+	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!(line = malloc(sizeof(char) * i + 1)))
@@ -83,9 +83,9 @@ int				get_next_line(int fd, char **line)
 	char		*temp;
 	int			ret;
 
-	ret = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (-1);
+	ret = 1;
 	if (!(temp = malloc(sizeof(char) * BUFFER_SIZE + 1)))
 		return (-1);
 	while (!has_return(file) && ret != 0)
