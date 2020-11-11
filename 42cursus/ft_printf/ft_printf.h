@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkathrin <marvin@42.ft>                    +#+  +:+       +#+        */
+/*   By: lflint <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 19:06:22 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/11/11 17:21:36 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/11 19:55:56 by lflint           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,21 @@
 # include <unistd.h>
 
 
-typedef struct
+typedef struct	s_tab
 {
-	char 	*str;
-	int		width;
-	int		precision;
-	char	c;
-	int		length;
-}			t_flags;
+	int			index;
+	int			dot;
+	const char	*format;
+	va_list		args;					/* flags "-0.*" */
+	int			width;					/* "*." */
+	int			precision;				/* ".*" */
+	char		c;						/* cspdiuxX% */
+	int			length;					/* hz */
+}				t_tab;
 
-int 		ft_printf(const char *, ...);
-int			prf_percent(char *str);
+int				ft_printf(const char *format, ...);
+int				prf_parser(t_tab *tab);
+int				prf_percent(char *str, int n);
+int				prf_flags(t_tab *tab);
 
 #endif

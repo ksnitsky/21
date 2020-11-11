@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkathrin <marvin@42.ft>                    +#+  +:+       +#+        */
+/*   By: lflint <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 19:06:06 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/11/11 09:49:43 by tkathrin         ###   ########.fr       */
+/*   Created: 2020/11/09 19:06:06 by lflint            #+#    #+#             */
+/*   Updated: 2020/11/11 19:41:11 by lflint           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,22 @@
 *			va_arg, va_copy, va_end
 */
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list		poop;
-	long long	b;
+	t_tab		*tab;
 
-	va_start(poop, format);
-
-	b = va_arg(poop, int);
+	if (!(tab = malloc(sizeof(t_tab))))
+		return (-1);
+	tab->format = format;
 	
-	printf("%05d", b);
+	if (!(prf_parser(tab)))
+		prf_print(tab->format);
 
-	va_end(poop);
+	va_start(tab->args, format);
+	
+	printf("%s\n", tab->format);
+
+	va_end(tab->args);
 	
 	return (0);
 }
