@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkathrin <marvin@42.ft>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 19:06:06 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/11/11 09:49:43 by tkathrin         ###   ########.fr       */
+/*   Created: 2020/11/09 19:06:22 by tkathrin          #+#    #+#             */
+/*   Updated: 2020/11/11 17:21:36 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-/*	External functions:
-*			malloc, free, write, va_start,
-*			va_arg, va_copy, va_end
-*/
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-int ft_printf(const char *format, ...)
+
+typedef struct
 {
-	va_list		poop;
-	long long	b;
+	char 	*str;
+	int		width;
+	int		precision;
+	char	c;
+	int		length;
+}			t_flags;
 
-	va_start(poop, format);
+int 		ft_printf(const char *, ...);
+int			prf_percent(char *str);
 
-	b = va_arg(poop, int);
-	
-	printf("%05d", b);
-
-	va_end(poop);
-	
-	return (0);
-}
-
-
-int	main()
-{
-	ft_printf("One", 123, "Three", "Four");
-}
+#endif
