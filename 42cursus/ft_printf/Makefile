@@ -8,10 +8,22 @@
 #⠀⠀⠀⠀⢀⣼⠟⠀⠻⣷⡀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⣾⠇⠀⠀⠀
 #⠀⠀⠀⣰⡿⠋⠀⠀⠀⠘⠿⣶⣤⣤⡄⠀⠀⠀⠀⠀⠀⠀⢸⡿⠀⠀⠀⠀
 #⠀⣠⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⢸⣇⠀⠀⠀⠀
-#⣼⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡀⠀⠀⠀ 
+#⣼⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡀⠀⠀⠀
 
+DIR			=	srcs/
+SRC			=	ft_printf.c \
+				prf_flags.c \
+				prf_parse_flags.c \
+				prf_parser.c \
+				prf_utils.c \
+				prf_flags.c \
+				prf_parse_hex.c \
+				prf_parse_int.c \
+				prf_parse_pointer.c \
+				prf_parse_str.c \
+				prf_parse_uint.c 
 
-SRCS		=	ft_printf.c	
+SRCS 		=	$(SRC:%=$(DIR)%)
 
 OBJS		=	$(SRCS:.c=.o)
 HEAD		=	.
@@ -25,10 +37,10 @@ RM			=	rm -f
 LIB			=	ar -rcs
 
 .c.o:		
-		$(CC) $(FLAGS) -c $< -o $(<:.c=.o) -I$(HEAD)
+		$(CC) $(FLAGS) -c $< -o $(<:.c=.o) -I$(HEAD) -I$(LIBFT)
 
 $(NAME):	$(OBJS)
-		make all -C $(LIBFT)/
+		make -C $(LIBFT)/
 		cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
 		$(LIB) $(NAME) $(OBJS)
 
