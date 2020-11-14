@@ -6,7 +6,7 @@
 /*   By: tkathrin <marvin@42.ft>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 17:13:07 by tkathrin          #+#    #+#             */
-/*   Updated: 2020/11/14 17:13:15 by tkathrin         ###   ########.fr       */
+/*   Updated: 2020/11/14 17:21:15 by tkathrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,10 @@ typedef struct	s_flags
 }				t_flags;
 
 int				ft_printf(const char *format, ...);
-
-/*	parser	*/
 void			prf_parse(t_flags *flags);
 void			prf_parse_flags(t_flags *flags, size_t start, size_t end);
 void			prf_parse_format(t_flags *flags, size_t *index);
-
-/* format */
-char 			*prf_fmt_char(t_flags *flags);
+char			*prf_fmt_char(t_flags *flags);
 char			*prf_fmt_str(t_flags *flags);
 char			*prf_fmt_int(t_flags *flags);
 char			*prf_fmt_pointer(t_flags *flags);
@@ -62,8 +58,6 @@ char			*prf_fmt_percent(t_flags *flags);
 char			*prf_fmt_hex(t_flags *flags);
 char			*prf_fmt_uint(t_flags *flags);
 void			*prf_get_f_func(char key);
-
-/*	utils	*/
 void			prf_putchar(t_flags *flags, char c);
 void			prf_putstr(char *str, t_flags *flags, int length);
 int				prf_strchr(const char *str, char c);
