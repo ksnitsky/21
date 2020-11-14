@@ -12,16 +12,20 @@
 
 DIR			=	srcs/
 SRC			=	ft_printf.c \
-				prf_flags.c \
-				prf_parse_flags.c \
-				prf_parser.c \
+				prf_fmt_int.c \
+				prf_fmt_uint.c \
+				prf_fmt_char.c \
+				prf_fmt_reg.c\
+				prf_fmt_hex.c \
+				prf_fmt_pointer.c \
+				prf_fmt_percent.c \
+				prf_fmt_str.c \
 				prf_utils.c \
-				prf_flags.c \
-				prf_parse_hex.c \
-				prf_parse_int.c \
-				prf_parse_pointer.c \
-				prf_parse_str.c \
-				prf_parse_uint.c 
+				prf_utils2.c \
+				prf_utils3.c \
+				prf_parse_flags.c \
+				prf_parse_format.c \
+				prf_parse.c
 
 SRCS 		=	$(SRC:%=$(DIR)%)
 
@@ -47,11 +51,11 @@ $(NAME):	$(OBJS)
 all:		$(NAME)
 
 fclean:		clean
-		$(RM) $(NAME) $(bonus)
+		$(RM) $(NAME)
 		make fclean -C $(LIBFT)
 
 clean:		
-		$(RM) $(OBJS) $(OBJS_B)
+		$(RM) $(OBJS)
 		make clean -C $(LIBFT)
 
 re:			fclean all

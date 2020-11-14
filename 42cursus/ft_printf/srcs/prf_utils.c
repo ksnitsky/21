@@ -1,74 +1,56 @@
 #include "ft_printf.h"
 
-static char	*treat_base(unsigned long long ull_save, int base,
-char *rtn, int count)
+void	prf_putchar(t_flags *flags, char c)
 {
-	while (ull_save != 0)
-	{
-		if ((ull_save % base) < 10)
-			rtn[count - 1] = (ull_save % base) + 48;
-		else
-			rtn[count - 1] = (ull_save % base) + 55;
-		ull_save /= base;
-		count--;
-	}
-	return (rtn);
+	write(1, &c, 1);
+	flags->count += 1;
 }
 
-char		*ft_ull_base(unsigned long long ull, int base)
+void	prf_putstr(char *str, t_flags *flags, int length)
 {
-	char				*rtn;
-	unsigned long long	ull_save;
-	int					count;
+	int	index;
 
-	rtn = 0;
-	count = 0;
-	ull_save = ull;
-	if (ull == 0)
-		return (ft_strdup("0"));
-	while (ull != 0)
+	if (!str || length == 0)
+		return ;
+	if (length == -1)
+		while (*str)
+			prf_putchar(flags, *str++);
+	else
 	{
-		ull /= base;
-		count++;
+		index = 0;
+		while (index < length)
+			prf_putchar(flags, str[index++]);
 	}
-	if (!(rtn = malloc(sizeof(char) * (count + 1))))
-		return (0);
-	rtn[count] = '\0';
-	rtn = treat_base(ull_save, base, rtn, count);
-	return (rtn);
 }
 
-char		*prf_str_tolower(char *str)
+int		prf_strchr(const char *str, char c)
 {
-	int i;
+	while (*str)
+	{
+		if (*str == c)
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
-	i = -1;
-	while (str[++i])
-		str[i] = ft_tolower(str[i]);
+char	*prf_chrtostr(char c)
+{
+	char	*str;
+
+	if (!(str = malloc(2 * sizeof(char))))
+		return (NULL);
+	str[0] = c;
+	str[1] = '\0';
 	return (str);
 }
 
-char		*prf_uitoa(unsigned int n)
+void	prf_validate_flags(t_flags *flags)
 {
-	char			*arr;
-	int				count;
-	int				sign;
-	long			temp;
-
-	temp = n;
-	sign = (temp < 0 ? -1 : 1);
-	count = (sign < 0 ? 2 : 1);
-	while (temp /= 10)
-		count++;
-	if (!(arr = malloc(count * sizeof(char) + 1)))
-		return (NULL);
-	arr[count--] = '\0';
-	n = (sign < 0 ? -n : n);
-	while (count)
-	{
-		arr[count--] = n % 10 + 48;
-		n /= 10;
-	}
-	arr[count] = (sign < 0 ? '-' : n + 48);
-	return (arr);
+	if (flags->valid)
+		return ;
+	flags->valid = (flags->width_enabled || flags->precision_enabled
+					|| flags->hex_upper);
+	flags->valid = flags->valid && flags->letter != '\0';
+	flags->done = flags->letter == '\0';
 }

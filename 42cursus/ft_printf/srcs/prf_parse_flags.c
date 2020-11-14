@@ -1,46 +1,106 @@
 #include "ft_printf.h"
 
-t_tab		prf_flag_minus(t_tab tab)
+static int	prf_parse_value(t_flags *flags, char *str)
 {
-	tab.minus = 1;
-	tab.zero = 0;
-	return (tab);
-}
+	int		value;
 
-t_tab		prf_flag_digit(char c, t_tab tab)
-{
-	
-	if (tab.star == 1)
-		tab.width = 0;
-	tab.width = (tab.width * 10) + (c - '0');
-	return (tab);
-}
-
-t_tab		prf_flag_width(va_list args, t_tab tab)
-{
-	tab.star = 1;
-	tab.width = va_arg(args, int);
-	if (tab.width < 0)
+	if (str[*(flags->index)] == '*')
 	{
-		tab.minus = 1;
-		tab.width *= -1;
-	}
-	return (tab);
-}
-
-int			prf_flag_dot(const char *format, int i,
-			t_tab *tab, va_list args)
-{
-	if (format[++i] == '*')
-	{
-		tab->dot = va_arg(args, int);
-		i++;
+		value = va_arg(flags->args, int);
+		*(flags->index) += 1;
 	}
 	else
 	{
-		tab->dot = 0;
-		while (ft_isdigit(format[i]))
-			tab->dot = (tab->dot * 10) + (format[i++] - '0');
+		value = ft_atoi(str + *(flags->index));
+		*(flags->index) += ft_itoa_base_nsize(value, 10) - 1;
 	}
-	return (i);
+	return (value);
+}
+
+static void	prf_parse_width(t_flags *flags, char *str)
+{
+	int		value;
+
+	flags->width_enabled = 1;
+	value = prf_parse_value(flags, str);
+	if (value < 0)
+	{
+		flags->side = 1;
+		value *= -1;
+		flags->width_negative = 1;
+		flags->width_char = ' ';
+	}
+	flags->width = value;
+}
+
+static void	prf_parse_precision(t_flags *flags, char *str)
+{
+	int		value;
+	size_t	zero_skip;
+
+	*(flags->index) += 1;
+	zero_skip = 0;
+	while ((str[*(flags->index) + zero_skip]) == '0')
+		zero_skip++;
+	flags->precision_enabled = 1;
+	value = prf_parse_value(flags, str);
+	if (value < 0)
+	{
+		value *= -1;
+		flags->precision_negative = 1;
+	}
+	flags->precision = value;
+	*(flags->index) += zero_skip;
+	if (value == 0)
+		flags->index -= 1;
+}
+
+static void	prf_parse_minus(t_flags *flags, char *str)
+{
+	char	current;
+
+	current = str[*(flags->index)];
+	if (current == '-')
+	{
+		flags->minus_sign_used = 1;
+		flags->width_char = ' ';
+		flags->side = 1;
+	}
+	else if (current == '0')
+	{
+		if (!flags->minus_sign_used)
+			flags->width_char = '0';
+	}
+	else
+	{
+		if ((current = str[*(flags->index)]) != '.')
+			prf_parse_width(flags, str);
+		if ((current = str[*(flags->index)]) == '.')
+			prf_parse_precision(flags, str);
+	}
+}
+
+void		prf_parse_flags(t_flags *flags, size_t start, size_t end)
+{
+	size_t	length;
+	char	*str;
+	size_t	index;
+	size_t	*old_index;
+
+	length = end - start;
+	if (!(str = malloc((length + 1) * sizeof(char))))
+		return ;
+	ft_memcpy(str, flags->format + start, length);
+	str[length] = '\0';
+	index = 0;
+	old_index = flags->index;
+	flags->index = &index;
+	while (index < length)
+	{
+		prf_parse_minus(flags, str);
+		index++;
+	}
+	flags->index = old_index;
+	free(str);
+	prf_validate_flags(flags);
 }
