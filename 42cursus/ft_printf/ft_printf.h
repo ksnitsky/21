@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkathrin <marvin@42.ft>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/14 17:13:07 by tkathrin          #+#    #+#             */
+/*   Updated: 2020/11/14 17:13:15 by tkathrin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -40,7 +52,6 @@ int				ft_printf(const char *format, ...);
 void			prf_parse(t_flags *flags);
 void			prf_parse_flags(t_flags *flags, size_t start, size_t end);
 void			prf_parse_format(t_flags *flags, size_t *index);
-
 
 /* format */
 char 			*prf_fmt_char(t_flags *flags);

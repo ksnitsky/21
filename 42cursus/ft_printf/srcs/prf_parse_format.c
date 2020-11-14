@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prf_parse_format.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkathrin <marvin@42.ft>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/14 17:12:39 by tkathrin          #+#    #+#             */
+/*   Updated: 2020/11/14 17:12:40 by tkathrin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static char	*prf_handle_width(t_flags *flags, char *formatted)
@@ -106,23 +118,3 @@ void		prf_parse_format(t_flags *flags, size_t *index)
 		prf_parse_flags(flags, start, *index);
 	prf_process_format(flags, f_func);
 }
-/*
-void		prf_parse_format(t_flags *flags)
-{
-	size_t	start;
-	void	*f_func;
-
-	prf_init_flags(flags);
-	start = flags->index;
-	while ((flags->letter = flags->format[flags->index]))
-	{
-		f_func = prf_get_f_func(flags->letter);
-		if (f_func != NULL || !prf_is_flag(flags->letter))
-			break ;
-		flags->index += 1;
-	}
-	if (start != flags->index)
-		prf_parse_flags(flags, start, flags->index);
-	prf_process_format(flags, f_func);
-}
-*/
