@@ -2,5 +2,7 @@
 
 int		main()
 {
-	ft_printf("%d", -2147483648);
+	char poop[4] = "poop";
+	ft_printf("%p\n", poop);
+	printf("%p\n", poop);
 }
