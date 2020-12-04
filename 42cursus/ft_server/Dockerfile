@@ -7,6 +7,7 @@ RUN apt -y install wget ; \
 	apt -y install mariadb-server ; \
 	apt -y install php7.3 php-mysql php-fpm php-pdo php-gd php-cli php-mbstring ;
 
+# changing to site dir
 WORKDIR /var/www/html/
 
 # nginx confing
@@ -30,6 +31,7 @@ RUN wget https://wordpress.org/latest.tar.gz ; \
 	rm -rf wordpress ;
 COPY ./srcs/wp-config.php /var/www/html
 
+# root dir is for 2 scripts
 WORKDIR /root
 
 # autoindex on/off script
