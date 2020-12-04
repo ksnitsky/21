@@ -9,9 +9,9 @@ RUN apt -y install wget ; \
 
 WORKDIR /var/www/html/
 
+# nginx confing
 RUN rm -f /etc/nginx/sites-enabled/default ; \
 	rm -rf *
-
 COPY ./srcs/nginx-conf /etc/nginx/sites-enabled/default
 
 # ssl
@@ -29,7 +29,6 @@ RUN wget https://wordpress.org/latest.tar.gz ; \
 	mv wordpress/* . ; \
 	rm -rf wordpress ;
 COPY ./srcs/wp-config.php /var/www/html
-
 
 WORKDIR /root
 
