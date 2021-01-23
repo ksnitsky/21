@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	gnl_strlen(const char *s)
 {
 	size_t count;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*gnl_memcpy(void *dest, const void *src, size_t n)
 {
 	const char	*s;
 	char		*d;
@@ -38,7 +38,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strdup(const char *s1)
+char	*gnl_strdup(const char *s1)
 {
 	size_t	len;
 	void	*s2;
@@ -49,7 +49,7 @@ char	*ft_strdup(const char *s1)
 	return ((char*)ft_memcpy(s2, s1, len));
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*gnl_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	int		len1;
