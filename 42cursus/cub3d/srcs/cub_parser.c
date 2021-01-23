@@ -15,8 +15,8 @@ static int
 	}
 	else if (mode >= 31 && mode <= 32)
 	{
-		write(1, "color", 5);
-		write(1, "\n", 1);
+		if (cub_prs_three(mode, check, cub3d))
+			panic("invalid color argument");
 	}
 	else if (mode == 4)
 	{
@@ -52,29 +52,20 @@ static void
 		}
 		i++;
 	}
+	free(check);
 }
 
 void
-	cub_file_parser(char *file)
+	cub_file_parser(char *file, t_cub *cub3d)
 {
-	t_cub	cub3d;
 	char	*line;
 	int		fd;
 
 	if (!file)
 		panic("no file");
-	cub_initstruct(&cub3d);
 	if ((fd = open(file, O_RDONLY)) < 0)
 		panic("invalid file");
 	while (get_next_line(fd, &line))
-		cub_validator(line, &cub3d);
-	cub_validator(line, &cub3d);
-	
-	puts(cub3d.no);
-	puts(cub3d.so);
-	puts(cub3d.we);
-	puts(cub3d.ea);
-	
-	//printf("width: %d, height: %d\n", cub3d.width, cub3d.height);
-	//printf("no: %s\nso: %s\nwe: %s\nea: %s\ns: %s\n", cub3d.no, cub3d.so, cub3d.we, cub3d.ea, cub3d.s);
+		cub_validator(line, cub3d);
+	cub_validator(line, cub3d);
 }

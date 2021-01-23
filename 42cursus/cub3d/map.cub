@@ -1,15 +1,14 @@
 R 800 400
 
-NO ./tests/maps/textures/sponge1.png
-SO ./tests/maps/textures/sponge2.png
-WE ./tests/maps/textures/sponge3.png
-EA ./tests/maps/textures/sponge4.png
+NO ./tests/maps/textures/north.png
+SO ./tests/maps/textures/south.png
+WE ./tests/maps/textures/west.png
+EA ./tests/maps/textures/east.png
 
-S ./tests/maps/textures/sponge5.png
+S ./tests/maps/textures/sprite.png
 
 F 220,100,0
 C 225,30,0
-
  
 1 1 1 1 1 1
 1 2 0 0 2 1

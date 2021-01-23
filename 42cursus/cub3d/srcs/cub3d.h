@@ -9,6 +9,8 @@
 
 # include "libft.h"
 
+# define HEX_BASE "0123456789abcde"
+
 typedef struct	s_data {
 	void		*img;
 	char		*addr;
@@ -25,9 +27,9 @@ typedef struct	s_cub
 	char		*so;	//text south
 	char		*we;	//text west
 	char		*ea;	//text east
-	char		*s;		//text sprite
-	char		f;		//color floor
-	char		c;		//color ceiling
+	char		*s;		//text sprit
+	int			f;		//color floor
+	int			c;		//color ceiling
 	char		**map;	//map
 }				t_cub;
 
@@ -42,9 +44,9 @@ int				cub_issomething(char c1, char c2);
 char			*cub_strjoin(char *s1, char *s2);
 
 // parser
-void			cub_file_parser(char *file);
+void			cub_file_parser(char *file, t_cub *cub3d);
 int				cub_prs_one(char *check, t_cub *cub3d);
 int				cub_prs_two(int mode, char *check, t_cub *cub3d);
-int				cub_prs_three(char *check, t_cub *cub3d);
+int				cub_prs_three(int mode, char *check, t_cub *cub3d);
 
 #endif

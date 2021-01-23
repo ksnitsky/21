@@ -9,6 +9,10 @@ void
 	cub3d->so = NULL;
 	cub3d->we = NULL;
 	cub3d->ea = NULL;
+	cub3d->s = NULL;
+
+	cub3d->f = 0x0;
+	cub3d->c = 0x0;
 }
 
 void
@@ -67,7 +71,6 @@ char
 			return (NULL);
 		while (s1[++index])
 			new_str[index] = s1[index];
-		//free(s1);
 	}
 	while (s2[++index])
 		new_str[len++] = s2[index];

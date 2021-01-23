@@ -19,7 +19,7 @@ void
 	int		y = 0;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 800, 500, "POOP");
+	mlx_win = mlx_new_window(mlx, 800, 500, "cub3d");
 	img.img = mlx_new_image(mlx, 800, 500);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								 &img.endian);
@@ -28,10 +28,10 @@ void
 		y = 0;
 		while (y < 500)
 		{
-			if (x == 400 && y == 250)
+			if (x <= 400 && y <= 250)
 				my_mlx_pixel_put(&img, y, x, 0x000000);
 			else
-				my_mlx_pixel_put(&img, x, y, 0x00FA9A);
+				my_mlx_pixel_put(&img, x, y, 0xdc143c);
 			y++;
 		}
 		x++;

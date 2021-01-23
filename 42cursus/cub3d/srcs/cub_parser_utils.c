@@ -31,24 +31,41 @@ int
 	while (check[index] == ' ' || check[index] == '\t')
 		index++;
 	if (mode == 21 && !cub3d->no)
-		cub3d->no = &check[index];
+		cub3d->no = cub_strjoin(cub3d->no, &check[index]);
 	else if (mode == 22 && cub3d->no)
-		cub3d->so = &check[index];
+		cub3d->so = cub_strjoin(cub3d->so, &check[index]);
 	else if (mode == 23 && cub3d->so)
-		cub3d->we = &check[index];
+		cub3d->we = cub_strjoin(cub3d->we, &check[index]);
 	else if (mode == 24 && cub3d->we)
-		cub3d->ea = &check[index];
+		cub3d->ea = cub_strjoin(cub3d->ea, &check[index]);
 	else if (mode == 25 && !cub3d->s)
-		cub3d->s = &check[index];
+		cub3d->s = cub_strjoin(cub3d->s, &check[index]);
 	else
 		if (!cub3d->no || !cub3d->so || !cub3d->we || !cub3d->ea)
 			return (1);
 	return (0);
 }
-/*
-int
-	cub_prs_three(char *check, t_cub *cub3d)
-{
 
-}
+/*
+ * https://stackoverflow.com/questions/29252261/how-to-merge-two-hex-numbers-to-one-number-and-then-convert-it-into-decimal/29252644
 */
+
+int
+	cub_prs_three(int mode, char *check, t_cub *cub3d)
+{
+	int		index;
+
+	index = 0;
+	while (check[index] == ' ' || check[index] == '\t')
+		index++;
+	cub_store_colors(&check[index]);
+	if (mode == 31)
+	{
+	}
+	else if (mode == 32)
+	{
+		cub3d->c = 3;
+	}
+	return (0);
+}
+
