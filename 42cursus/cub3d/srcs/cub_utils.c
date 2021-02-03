@@ -77,3 +77,15 @@ char
 	new_str[index] = '\0';
 	return (new_str);
 }
+
+int
+	cub_maplen(char *str)
+{
+	int		count;
+
+	count = 0;
+	while (*str)
+	{
+		if ()
+	}
+}

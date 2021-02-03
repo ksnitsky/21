@@ -45,8 +45,12 @@ char			*cub_strjoin(char *s1, char *s2);
 
 // parser
 void			cub_file_parser(char *file, t_cub *cub3d);
-int				cub_prs_one(char *check, t_cub *cub3d);
-int				cub_prs_two(int mode, char *check, t_cub *cub3d);
-int				cub_prs_three(int mode, char *check, t_cub *cub3d);
+int				cub_prs_reso(char *check, t_cub *cub3d);
+int				cub_prs_textures(int mode, char *check, t_cub *cub3d);
+int				cub_prs_colors(int mode, char *check, t_cub *cub3d);
+int				cub_prs_map(char *check, t_cub *cub3d);
+
+// parser utils
+int				cub_store_colors(char *rgb);
 
 #endif

@@ -1,6 +1,7 @@
 DIR			=	srcs/
 SRC			=	cub3d.c \
 				cub_parser.c \
+				cub_parser_funcs.c \
 				cub_parser_utils.c \
 				cub_painter.c \
 				cub_utils.c

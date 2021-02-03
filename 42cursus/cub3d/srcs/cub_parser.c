@@ -5,28 +5,22 @@ static int
 {
 	if (mode == 1)
 	{
-		if (cub_prs_one(check, cub3d))
+		if (cub_prs_reso(check, cub3d))
 			panic("invalid resolution argument");
 	}
 	else if (mode >= 21 && mode <= 25)
 	{
-		if (cub_prs_two(mode, check, cub3d))
+		if (cub_prs_textures(mode, check, cub3d))
 			panic("invalid texture argument");
 	}
 	else if (mode >= 31 && mode <= 32)
-	{
-		if (cub_prs_three(mode, check, cub3d))
-			panic("invalid color argument");
-	}
+		cub_prs_colors(mode, check, cub3d);
 	else if (mode == 4)
 	{
-		write(1, "map", 3);
-		write(1, "\n", 1);
-	}
-	else if (mode == 5)
-	{
-		write(1, "qqqq", 4);
-		write(1, "\n", 1);
+		if (!cub3d->f || !cub3d->c)
+			panic("invalid color argument");
+		if (cub_prs_map(check, cub3d))
+			panic("invalid map");
 	}
 	return (0);
 }
@@ -46,7 +40,12 @@ static void
 			;
 		else if ((mode = cub_issomething(check[i], check[i+1])))
 		{
-			cub_validate(mode, &check[i+2], cub3d);
+			if (mode == -1)
+				panic("unexpected error");
+			else if (mode == 4)
+				cub_validate(mode, check, cub3d);
+			else
+				cub_validate(mode, &check[i+2], cub3d);
 			if (mode != 0)
 				break ;
 		}

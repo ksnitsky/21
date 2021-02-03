@@ -12,6 +12,7 @@ int
 		cub_initstruct(&cub3d);
 		cub_file_parser(argv[1], &cub3d);
 	}
-	cub_image_painter();
+	printf("%x %x", cub3d.f, cub3d.c);
+	//cub_image_painter();
 	return (0);
 }

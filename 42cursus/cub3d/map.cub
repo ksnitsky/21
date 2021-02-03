@@ -7,10 +7,11 @@ EA ./tests/maps/textures/east.png
 
 S ./tests/maps/textures/sprite.png
 
-F 220,100,0
-C 225,30,0
+F 220,100,30
+
+C 225,30,100
  
-1 1 1 1 1 1
+1 1
 1 2 0 0 2 1
 1 0 0 0 0 1
 1 0 0 0 N 1
