@@ -3,16 +3,11 @@
 int
 	main(void)
 {
-	int red = 0x0;
-	int green = 0x0;
-	int blue = 0x0;
 	int color = 0x0;
+	int test = 0x0;
 
-	red += 220;
-	green += 20;
-	blue += 60;
-	color = (red<<16) | (green<<8) | (blue);
+	color = (220<<16) | (100<<8) | (30<<0);
+	test = (225<<16) | (30<<8) | (100<<0);
 
-//	pook = pook * 100 +  0x14;
-	printf("%x", color);
+	printf("%x, %x", color, test);
 }
