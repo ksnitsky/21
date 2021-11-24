@@ -36,5 +36,5 @@ void	ft_rush(int x, int y)
 
 int		main(void)
 {
-	ft_rush(7, 8);
+	ft_rush(20, 20);
 }

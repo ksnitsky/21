@@ -18,6 +18,5 @@ int		ft_fibonacci(int index)
 		return (0);
 	else if (index >= 3)
 		return (ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
-	else
-		return (1);
+	return (1);
 }
